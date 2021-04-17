@@ -31,6 +31,7 @@ public class AddPhoneServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("brands", PhoneEntity.GetBrandList());
         request.getRequestDispatcher("phone-add.jsp").forward(request, response);
     }
 }

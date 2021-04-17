@@ -19,31 +19,6 @@ public class PhoneDao {
         em.close();
     }
 
-    public void updatePhone(int id, PhoneEntity updatingPhone){
-        em = emf.createEntityManager();
-        em.getTransaction().begin();
-        PhoneEntity phoneUpdate = em.find(PhoneEntity.class, id);
-        if(phoneUpdate != null){
-            phoneUpdate.setName(updatingPhone.getName());
-            phoneUpdate.setBrand(updatingPhone.getBrand());
-            phoneUpdate.setPrice(updatingPhone.getPrice());
-            phoneUpdate.setDescription(updatingPhone.getDescription());
-        }
-        em.getTransaction().commit();
-        em.close();
-    }
-
-    public void deletePhone(int id){
-        em = emf.createEntityManager();
-        em.getTransaction().begin();
-        PhoneEntity phoneDelete = em.find(PhoneEntity.class, id);
-        if (phoneDelete != null){
-            em.remove(phoneDelete);
-            em.getTransaction().commit();
-        }
-        em.close();
-    }
-
     public List<PhoneEntity> getPhones(){
         em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -51,14 +26,5 @@ public class PhoneDao {
         em.getTransaction().commit();
         em.close();
         return list;
-    }
-
-    public PhoneEntity getPhoneById(int id){
-        em = emf.createEntityManager();
-        em.getTransaction().begin();
-        PhoneEntity phoneEntity = em.createQuery("select p from PhoneEntity p where p.id = " + id, PhoneEntity.class).getSingleResult();
-        em.getTransaction().commit();
-        em.close();
-        return phoneEntity;
     }
 }
